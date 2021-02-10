@@ -18,14 +18,9 @@ Ahora podemos Crear un Canal --> Tener una herramienta para poder comunicarme co
 
 ### 2.2 Adjuntos ofimáticos maliciosos:
 
-    En excel es más tipico que tenga macros por lo que usarlas aquí en vez de en Word porque en Word no suelen estar.
+ En excel es más tipico que tenga macros por lo que usarlas aquí en vez de en Word porque en Word no suelen estar.
 
 - Office Macros
-
-```python
-print("hola")
-```
-
 
 ## 3. Entrega vía Web
 
