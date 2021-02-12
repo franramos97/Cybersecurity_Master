@@ -7,7 +7,7 @@
 
 ## 2. Comprobar estado de un repositorio
 
-- **"git status"**: Muestra la lista de archivos que han sido modificados desde el último guardado
+- **`git status`**: Muestra la lista de archivos que han sido modificados desde el último guardado
 - **"git diff"**: Cambios en el repositorio
 - **"git diff 'directory'"**: Cambios en los ficheros del 'directory' 
 - **"diff --git a/rep.txt b/rep.txt"**: Diferencias entre 2 ficheros. "a" 1ª versión, "b" 2ª versión. "-" muestra borrados, "+" muestra adiciones.
