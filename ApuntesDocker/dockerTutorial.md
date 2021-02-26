@@ -20,3 +20,7 @@ Existen múltiples aplicaciones dockerizadas (versiones metidas en contenedores)
 ## Instalar Docker en **Linux**
 
 - Enlace: https://docs.docker.com/engine/install/ubuntu/ . Nos vamos a la parte de hacerlo con el script
+- `curl -fsSL https://get.docker.com -o get-docker.sh` + `sudo sh get-docker.sh`
+-
+
+
