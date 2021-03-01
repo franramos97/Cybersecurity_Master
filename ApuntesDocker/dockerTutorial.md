@@ -31,13 +31,19 @@ Existen múltiples aplicaciones dockerizadas (versiones metidas en contenedores)
 
 ## Comando `run` 
 
-- Para correr un **contenedor** a partir de una **imagen**: `docker run nginx` correrá una instancia de la aplicación 'ngingx'. Si la imagen no está presente en el host, va a 'docker hub' y hace un pull de la imagen
+- Para correr un **contenedor** a partir de una **imagen**: `docker run nginx` correrá una instancia de la aplicación 'ngingx'. Si la imagen no está presente en el host, va a 'docker hub' y hace un pull de la imagen.
+- Por defecto (si no ponemos `-it` de interactivo para que nos abra la shell) al hacer un run abre y cierra el contenedor (la instancia) **si no tiene ningún servicio dentro ejecutándose** como es el caso de los sistemas operativos (`docker run ubuntu`). Por lo que sólo haciendo `docker ps -a` lo veremos (y lo veremos en estado 'Exited') 
+- `docker run kodekloud/simple-webapp`: Se ejecuta en **'attached mode'** que lo que hace es mostrarte la consola del container
+- `docker run -d kodekloud/simple-webapp`: Se ejecuta en **'dettached mode'**, en modo background. Después podemos hacer `docker attach "nombre_o_ID"` para volver al modo attached
 
-## Comando `ps`
+## Comando `pull`
+
+- `docker pull nginx`: No ejecuta el run, sólo carga la imagen y la guarda en nuestro host.
+
+## Comando `ps`: Ver **CONTENEDORES**
 
 - `docker ps`: Lista todos los contenedores que están corriendo (ID, status, imagen, puertos, nombre...)
 - `docker ps -a`: Para ver el historial de contenedores que están o se han lanzado
-- `
 
 ## Comando `stop`
 
@@ -47,13 +53,17 @@ Existen múltiples aplicaciones dockerizadas (versiones metidas en contenedores)
 
 - `docker rm "nombre_o_ID"`: Para quitarlo permanentemente. Ya no aparecerá al hacer `docker ps -a`
 
-## Comando `images`
+## Comando `images`: Ver **IMÁGENES**
 
 - `docker images`: Nos muestra una lista de imágenes presentes en nuestro ordenador (y el tamaño)
 
+## Comando `rmi`: Borrar **IMÁGENES** (Comprobar si algún contenedor está corriendo desde esa imagen)
 
+- `docker rmi nginx`: Nos borra la imagen 'nginx'
 
+## Comando `exec`: Para ejecutar un comando dentro de un contenedor
 
+- `docker exec "nombre_o_ID" cat /etc/hosts`: Ejecuto cat de /etc/hosts dentro del docker
 
 
 
