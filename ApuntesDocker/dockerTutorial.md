@@ -45,12 +45,17 @@ Existen múltiples aplicaciones dockerizadas (versiones metidas en contenedores)
 
 - `docker run -it kodekloud/simple-prompt-docker`: Mapeamos el standard input de nuestro host al contenedor usando '-i' y utilizando '-t' adjuntamos la terminal al contenedor (sudo terminal)
 
-## 3.3 PORT mapping. Ejemplo `docker run kodekloud/webapp` lanza una aplicación web. Para acceder:
+### 3.3 PORT mapping `-p`. Ejemplo `docker run kodekloud/webapp` lanza una aplicación web. Para acceder:
 
 - Supongamos que el comando anterior devuelve: *Running on http://0.0.0.0:5000* Por lo que se ejecuta en local, en el puerto 5000
 
 - Internamente (desde mi host) usamos la IP del contenedor. A cada contenedor se le asigna una IP por defecto (es una IP interna que sólo se accede desde el host donde está el docker)
 - Para que un usuario acceda desde fuera debe usar la IP del **docker host (nuestro host)**. Para que esto funcione debemos mapear el puerto dentro del contenedor docker a un puerto libre en el host. Si queremos que acceda un usuario externo a nuestra aplicación debemos mapear el puerto 80 de nuestro host con el puerto 5000 del contenedor (en el que corre el contenedor) --> `docker run -p 80:5000 kodekloud/simple-webapp`: Mapeamos el puerto 80-5000. Ahora un usuario externo accederá con `http://IP_mi_host:80` y el tráfico al puerto 80 se redirigirá al 5000. **NO PUEDE MAPEARSE UN MISMO PUERTO DEL HOST A VARIOS PUERTOS DE CONTENEDORES**
+
+### 3.4 Volume mapping `-v`
+
+- Cada contenedor docker tiene su propio sistema de archivos aislado.
+- Si queremos **datos persistentes** --> Mapear un directorio externo (en el host) a uno interno en el contenedor: `docker run -v /opt/datadir:/var/lib/mysql mysql`: **directorio_host:directorio_internoDocker** 
 
 ## 4. Comando `pull`
 
@@ -61,27 +66,53 @@ Existen múltiples aplicaciones dockerizadas (versiones metidas en contenedores)
 - `docker ps`: Lista todos los contenedores que están corriendo (ID, status, imagen, puertos, nombre...)
 - `docker ps -a`: Para ver el historial de contenedores que están o se han lanzado
 
-## 6. Comando `stop`
+## 6. Comando `inspect`
+
+- `docker inspect "nombre_o_ID"`: Muestra info adicional de un contenedor (path, config data, networkSettings..)
+
+### 6.1. Variables de entorno y `docker inspect`
+
+- En un código python podemos poner por ejemplo una línea con `color = os.environ.get('APP_COLOR')`. Después podemos ejecutar `docker run -e APP_COLOR=blue simple-webapp-color` y estaremos ya pasándole el valor 'blue' directamente a la instancia que creamos.
+- Cuando hacemos `docker inspect "nombre_o_ID"` en el apartado `"Env": [` veremos una lista de sus variables de entorno
+
+## 7. Comando `stop`
 
 - `docker stop "nombre_o_ID"`: Paramos el contenedor, debemos pasarle o el nombre o el ID (verlo con `docker ps`)
 
-## 7. Comando `rm`
+## 8. Comando `rm`
 
 - `docker rm "nombre_o_ID"`: Para quitarlo permanentemente. Ya no aparecerá al hacer `docker ps -a`
 
-## 8. Comando `images`: Ver **IMÁGENES**
+## 9. Comando `images`: Ver **IMÁGENES**
 
 - `docker images`: Nos muestra una lista de imágenes presentes en nuestro ordenador (y el tamaño)
 
-## 9. Comando `rmi`: Borrar **IMÁGENES** (Comprobar si algún contenedor está corriendo desde esa imagen)
+## 10. Comando `rmi`: Borrar **IMÁGENES** (Comprobar si algún contenedor está corriendo desde esa imagen)
 
 - `docker rmi nginx`: Nos borra la imagen 'nginx'
 
-## 10. Comando `exec`: Para ejecutar un comando dentro de un contenedor
+## 11. Comando `exec`: Para ejecutar un comando dentro de un contenedor
 
 - `docker exec "nombre_o_ID" cat /etc/hosts`: Ejecuto cat de /etc/hosts dentro del docker
 
-## 11. Docker labs: https://kodekloud.com/courses/enrolled/970256
+## 12. Comando `logs`
+
+- `docker logs "nombre_o_ID"`: Para ver los contenidos escritos al standard output de ese contenedor
+
+## 13. Crear imágenes propias. Uso de `Dockerfile`
+
+- El `Dockerfile` está escrito con lenguaje específico para docker `FROM`, `RUN`, `COPY`, `ENTRYPOINT`... El primer comando siempre debe ser un 'FROM' del sistema operativo en el que se basa u otra imagen creada anteriormente basada en un OS.
+
+<img width="1270" alt="DockerfileStructure" src="https://user-images.githubusercontent.com/78214153/109571023-4b0d5400-7aeb-11eb-8d2e-324b90c29909.PNG">
+
+
+1) Crear un docker file llamado `Dockerfile` donde escribamos las instrucciones para instalar nuestra aplicación (instalación de dependencias, dónde copiar el código source, cuál es el ENTRYPOINT de la aplicación... en ese orden)
+
+### 13.1 Comando `build` + `push`
+
+2) Una vez hecho lo anterior, `docker build Dockerfile -t franete/custom-app`: Especificamos el 'Dockerfile' del que se crea y el tag '-t' para la imagen. Esto crea una imagen en local. Para hacerla pública en el registro docker hub --> `docker push franete/custom-app`
+
+## . Docker labs: https://kodekloud.com/courses/enrolled/970256
 
 
 
