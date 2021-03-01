@@ -90,6 +90,7 @@ Existen múltiples aplicaciones dockerizadas (versiones metidas en contenedores)
 ## 10. Comando `rmi`: Borrar **IMÁGENES** (Comprobar si algún contenedor está corriendo desde esa imagen)
 
 - `docker rmi nginx`: Nos borra la imagen 'nginx'
+- `docker rmi $(docker images -a -q)`: Borra TODAS las imagenes
 
 ## 11. Comando `exec`: Para ejecutar un comando dentro de un contenedor
 
