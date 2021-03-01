@@ -36,6 +36,22 @@ Existen múltiples aplicaciones dockerizadas (versiones metidas en contenedores)
 - `docker run kodekloud/simple-webapp`: Se ejecuta en **'attached mode'** que lo que hace es mostrarte la consola del container
 - `docker run -d kodekloud/simple-webapp`: Se ejecuta en **'dettached mode'**, en modo background. Después podemos hacer `docker attach "nombre_o_ID"` para volver al modo attached
 
+### **Tags** (en Dockerhub podemos ver los 'tags' soportados)
+
+- `docker run redis:4.0`: Nos lanza la versión 4.0 (tag = redis:4.0)
+- `docker run redis`: Si no especifico 'tag' lanza la última versión (tag = 'latests')
+
+### Modo **interactivo** `-it`
+
+- `docker run -it kodekloud/simple-prompt-docker`: Mapeamos el standard input de nuestro host al contenedor usando '-i' y utilizando '-t' adjuntamos la terminal al contenedor (sudo terminal)
+
+## PORT mapping. Ejemplo `docker run kodekloud/webapp` lanza una aplicación web. Para acceder:
+
+- Supongamos que el comando anterior devuelve: *Running on http://0.0.0.0:5000* Por lo que se ejecuta en local, en el puerto 5000
+
+- Internamente (desde mi host) usamos la IP del contenedor. A cada contenedor se le asigna una IP por defecto (es una IP interna que sólo se accede desde el host donde está el docker)
+- Para que un usuario acceda desde fuera debe usar la IP del **docker host (nuestro host)**. Para que esto funcione debemos mapear el puerto dentro del contenedor docker a un puerto libre en el host. Si queremos que acceda un usuario externo a nuestra aplicación debemos mapear el puerto 80 de nuestro host con el puerto 5000 del contenedor (en el que corre el contenedor) --> `docker run -p 80:5000 kodekloud/simple-webapp`: Mapeamos el puerto 80-5000. Ahora un usuario externo accederá con `http://IP_mi_host:80` y el tráfico al puerto 80 se redirigirá al 5000. **NO PUEDE MAPEARSE UN MISMO PUERTO DEL HOST A VARIOS PUERTOS DE CONTENEDORES**
+
 ## Comando `pull`
 
 - `docker pull nginx`: No ejecuta el run, sólo carga la imagen y la guarda en nuestro host.
