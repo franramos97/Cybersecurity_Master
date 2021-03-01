@@ -1,6 +1,9 @@
 # Apuntes curso docker
 - Link curso: https://www.youtube.com/watch?v=fqMOX6JJhGo
 
+
+![DockerStructure](https://user-images.githubusercontent.com/78214153/109523609-d4069a00-7aaf-11eb-86ee-a965f3b494cd.PNG)
+
 Con docker podemos correr distintos componentes en contenedores separados, cada uno con sus propias dependencias y librerias. Todo sobre el mismo sistema operativo y la misma VM.
 
 - **Contenedores**: Entornos completamente aislados, con sus propios procesos, interfaces ... pero todos **comparten el mismo kernel del Sistema Operativo**
@@ -49,7 +52,6 @@ Existen múltiples aplicaciones dockerizadas (versiones metidas en contenedores)
 - `docker images`: Nos muestra una lista de imágenes presentes en nuestro ordenador (y el tamaño)
 
 
-![DockerStructure](https://user-images.githubusercontent.com/78214153/109523609-d4069a00-7aaf-11eb-86ee-a965f3b494cd.PNG)
 
 
 
