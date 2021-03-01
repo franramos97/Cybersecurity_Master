@@ -11,9 +11,9 @@ Con docker podemos correr distintos componentes en contenedores separados, cada 
 
 Los sistemas operativos Ubuntu, fedora, Suse, CentOS, todos comparten el mismo Kernel OS (Linux) pero es el software existente por encima lo que los hace sistemas operativos distintos.
 
-Si tenemos un sistema con Ubuntu (basado en Linux) como SO y docker instalado en él, docker puede correr cualquier SO que esté basado también en el mismo Kernel (Linux). `En este caso no podemos correr Windows si tenemos un SO basado en Linux ni viceversa`
+Si tenemos un sistema con Ubuntu (basado en Linux) como SO y docker instalado en él, docker puede correr cualquier SO que esté basado también en el mismo Kernel (Linux). En este caso no podemos correr Windows si tenemos un SO basado en Linux ni viceversa
 
-`Si corremos en Windows un docker de Linux, realmente Windows está corriendo un contenedor Linux sobre una máquina virtual de Linux (en background)`
+Si corremos en Windows un docker de Linux, realmente Windows está corriendo un contenedor Linux sobre una máquina virtual de Linux (en background)
 
 Existen múltiples aplicaciones dockerizadas (versiones metidas en contenedores) disponibles en docker hub o docker store. Una vez instalado Docker en tu host y descargada la imagen, simplemente `docker run` correrá la instancia en cuestión
 
@@ -65,6 +65,7 @@ Existen múltiples aplicaciones dockerizadas (versiones metidas en contenedores)
 
 - `docker exec "nombre_o_ID" cat /etc/hosts`: Ejecuto cat de /etc/hosts dentro del docker
 
+## Docker labs: https://kodekloud.com/courses/enrolled/970256
 
 
 
