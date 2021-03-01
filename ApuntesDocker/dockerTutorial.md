@@ -21,6 +21,39 @@ Existen múltiples aplicaciones dockerizadas (versiones metidas en contenedores)
 
 - Enlace: https://docs.docker.com/engine/install/ubuntu/ . Nos vamos a la parte de hacerlo con el script
 - `curl -fsSL https://get.docker.com -o get-docker.sh` + `sudo sh get-docker.sh`
--
+
+## Uso de Docker
+
+`sudo docker run docker/whalesay cowsay Hello-World!` Con este comando docker hace un pull+run de la imagen whalesay de dockerhub
+
+## Comando `run` 
+
+- Para correr un **contenedor** a partir de una **imagen**: `docker run nginx` correrá una instancia de la aplicación 'ngingx'. Si la imagen no está presente en el host, va a 'docker hub' y hace un pull de la imagen
+
+## Comando `ps`
+
+- `docker ps`: Lista todos los contenedores que están corriendo (ID, status, imagen, puertos, nombre...)
+- `docker ps -a`: Para ver el historial de contenedores que están o se han lanzado
+- `
+
+## Comando `stop`
+
+- `docker stop "nombre_o_ID"`: Paramos el contenedor, debemos pasarle o el nombre o el ID (verlo con `docker ps`)
+
+## Comando `rm`
+
+- `docker rm "nombre_o_ID"`: Para quitarlo permanentemente. Ya no aparecerá al hacer `docker ps -a`
+
+## Comando `images`
+
+- `docker images`: Nos muestra una lista de imágenes presentes en nuestro ordenador (y el tamaño)
+
+
+![DockerStructure](https://user-images.githubusercontent.com/78214153/109523609-d4069a00-7aaf-11eb-86ee-a965f3b494cd.PNG)
+
+
+
+
+
 
 
