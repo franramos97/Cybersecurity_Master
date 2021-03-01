@@ -20,68 +20,68 @@ Existen múltiples aplicaciones dockerizadas (versiones metidas en contenedores)
 - **Docker Image**: Paquete o plantilla utilizado para crear uno o más contenedores. Docker Image --> DockerInstance#1,  DockerInstance#2...
 - **Contenedores**: Instancias de imágenes que están corriendo.
 
-## Instalar Docker en **Linux**
+## 1. Instalar Docker en **Linux**
 
 - Enlace: https://docs.docker.com/engine/install/ubuntu/ . Nos vamos a la parte de hacerlo con el script
 - `curl -fsSL https://get.docker.com -o get-docker.sh` + `sudo sh get-docker.sh`
 
-## Uso de Docker
+## 2. Uso de Docker
 
 `sudo docker run docker/whalesay cowsay Hello-World!` Con este comando docker hace un pull+run de la imagen whalesay de dockerhub
 
-## Comando `run` 
+## 3. Comando `run` 
 
 - Para correr un **contenedor** a partir de una **imagen**: `docker run nginx` correrá una instancia de la aplicación 'ngingx'. Si la imagen no está presente en el host, va a 'docker hub' y hace un pull de la imagen.
 - Por defecto (si no ponemos `-it` de interactivo para que nos abra la shell) al hacer un run abre y cierra el contenedor (la instancia) **si no tiene ningún servicio dentro ejecutándose** como es el caso de los sistemas operativos (`docker run ubuntu`). Por lo que sólo haciendo `docker ps -a` lo veremos (y lo veremos en estado 'Exited') 
 - `docker run kodekloud/simple-webapp`: Se ejecuta en **'attached mode'** que lo que hace es mostrarte la consola del container
 - `docker run -d kodekloud/simple-webapp`: Se ejecuta en **'dettached mode'**, en modo background. Después podemos hacer `docker attach "nombre_o_ID"` para volver al modo attached
 
-### **Tags** (en Dockerhub podemos ver los 'tags' soportados)
+### 3.1 **Tags** (en Dockerhub podemos ver los 'tags' soportados)
 
 - `docker run redis:4.0`: Nos lanza la versión 4.0 (tag = redis:4.0)
 - `docker run redis`: Si no especifico 'tag' lanza la última versión (tag = 'latests')
 
-### Modo **interactivo** `-it`
+### 3.2 Modo **interactivo** `-it`
 
 - `docker run -it kodekloud/simple-prompt-docker`: Mapeamos el standard input de nuestro host al contenedor usando '-i' y utilizando '-t' adjuntamos la terminal al contenedor (sudo terminal)
 
-## PORT mapping. Ejemplo `docker run kodekloud/webapp` lanza una aplicación web. Para acceder:
+## 3.3 PORT mapping. Ejemplo `docker run kodekloud/webapp` lanza una aplicación web. Para acceder:
 
 - Supongamos que el comando anterior devuelve: *Running on http://0.0.0.0:5000* Por lo que se ejecuta en local, en el puerto 5000
 
 - Internamente (desde mi host) usamos la IP del contenedor. A cada contenedor se le asigna una IP por defecto (es una IP interna que sólo se accede desde el host donde está el docker)
 - Para que un usuario acceda desde fuera debe usar la IP del **docker host (nuestro host)**. Para que esto funcione debemos mapear el puerto dentro del contenedor docker a un puerto libre en el host. Si queremos que acceda un usuario externo a nuestra aplicación debemos mapear el puerto 80 de nuestro host con el puerto 5000 del contenedor (en el que corre el contenedor) --> `docker run -p 80:5000 kodekloud/simple-webapp`: Mapeamos el puerto 80-5000. Ahora un usuario externo accederá con `http://IP_mi_host:80` y el tráfico al puerto 80 se redirigirá al 5000. **NO PUEDE MAPEARSE UN MISMO PUERTO DEL HOST A VARIOS PUERTOS DE CONTENEDORES**
 
-## Comando `pull`
+## 4. Comando `pull`
 
 - `docker pull nginx`: No ejecuta el run, sólo carga la imagen y la guarda en nuestro host.
 
-## Comando `ps`: Ver **CONTENEDORES**
+## 5. Comando `ps`: Ver **CONTENEDORES**
 
 - `docker ps`: Lista todos los contenedores que están corriendo (ID, status, imagen, puertos, nombre...)
 - `docker ps -a`: Para ver el historial de contenedores que están o se han lanzado
 
-## Comando `stop`
+## 6. Comando `stop`
 
 - `docker stop "nombre_o_ID"`: Paramos el contenedor, debemos pasarle o el nombre o el ID (verlo con `docker ps`)
 
-## Comando `rm`
+## 7. Comando `rm`
 
 - `docker rm "nombre_o_ID"`: Para quitarlo permanentemente. Ya no aparecerá al hacer `docker ps -a`
 
-## Comando `images`: Ver **IMÁGENES**
+## 8. Comando `images`: Ver **IMÁGENES**
 
 - `docker images`: Nos muestra una lista de imágenes presentes en nuestro ordenador (y el tamaño)
 
-## Comando `rmi`: Borrar **IMÁGENES** (Comprobar si algún contenedor está corriendo desde esa imagen)
+## 9. Comando `rmi`: Borrar **IMÁGENES** (Comprobar si algún contenedor está corriendo desde esa imagen)
 
 - `docker rmi nginx`: Nos borra la imagen 'nginx'
 
-## Comando `exec`: Para ejecutar un comando dentro de un contenedor
+## 10. Comando `exec`: Para ejecutar un comando dentro de un contenedor
 
 - `docker exec "nombre_o_ID" cat /etc/hosts`: Ejecuto cat de /etc/hosts dentro del docker
 
-## Docker labs: https://kodekloud.com/courses/enrolled/970256
+## 11. Docker labs: https://kodekloud.com/courses/enrolled/970256
 
 
 
