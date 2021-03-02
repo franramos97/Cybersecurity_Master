@@ -135,6 +135,10 @@ Existen múltiples aplicaciones dockerizadas (versiones metidas en contenedores)
 2) `Host`: Se crea con `docker run Ubuntu --network=host`. Permite que usuarios externos puedan conectarse a los contenedores (CUIDADO: ya no existirá aislamiento entre el host y el contenedor pero tampoco haría falta mapear los puertos entre los puertos del host y del contenedor, el contenedor usaría el puerto real del host)
 3) `None`: Se crea con `docker run Ubuntu --network=none`. De esta forma los contenedores no están unidos a ninguna red y no tienen acceso a la red externa ni a otros contenedores (red aislada)
 
+### 16.1. Definir redes
+
+- `docker network create ---driver bridge --subnet 182.18.0.0/16 nombre-red-aislada`: Para crear nuestra propia red interna
+- `docker network ls`: Lista de las redes docker
 
 
 
