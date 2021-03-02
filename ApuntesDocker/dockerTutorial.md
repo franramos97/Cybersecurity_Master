@@ -113,7 +113,12 @@ Existen múltiples aplicaciones dockerizadas (versiones metidas en contenedores)
 
 2) Una vez hecho lo anterior, `docker build Dockerfile -t franete/custom-app`: Especificamos el 'Dockerfile' del que se crea y el tag '-t' para la imagen. Esto crea una imagen en local. Para hacerla pública en el registro docker hub --> `docker push franete/custom-app`
 
-## . Docker labs: https://kodekloud.com/courses/enrolled/970256
+## 14 Docker labs: https://kodekloud.com/courses/enrolled/970256
+
+## **CMD & ENTRYPOINT**
+
+- Si miramos la imagen por ejemplo de 'Ngingx' veremos unas instrucciones `CMD` que define el programa que correrá dentro del contenedor cuando se ejecute. Si vemos `CMD ["bash"]` esto es que tira una shell que escucha inputs del terminal. 
+- Para sobrescribir el comando (cmd) que viene en la imagen podemos: `docker run ubuntu [COMMAND]` Por ejemplo `docker run ubuntu sleep 5`
 
 
 
