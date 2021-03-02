@@ -111,7 +111,7 @@ Existen múltiples aplicaciones dockerizadas (versiones metidas en contenedores)
 
 ### 13.1 Comando `build` + `push`
 
-2) Una vez hecho lo anterior, `docker build Dockerfile -t franete/custom-app`: Especificamos el 'Dockerfile' del que se crea y el tag '-t' para la imagen. Esto crea una imagen en local. Para hacerla pública en el registro docker hub --> `docker push franete/custom-app`
+2) Una vez hecho lo anterior, `docker build Dockerfile -t franete/custom-app:2.0 .`: Especificamos el 'Dockerfile' del que se crea, el nombre es "franete/custom-app" y el tag '-t' es 2.0. Esto crea una imagen en local. Para hacerla pública en el registro docker hub --> `docker push franete/custom-app`
 
 ## 14. Docker labs: https://kodekloud.com/courses/enrolled/970256
 
