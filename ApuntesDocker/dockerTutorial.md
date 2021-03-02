@@ -131,9 +131,9 @@ Existen múltiples aplicaciones dockerizadas (versiones metidas en contenedores)
 - Al instalar docker crea tres redes automaticamente:
 
 
-- 1) `Bridge`: Se crea con `docker run ubuntu` por defecto. Es una red privada creada por docker en el host, los contenedores se adjuntan ahí por defecto y obtienen una IP interna, los contenedores se comunican entre ellos mediante esta red
-- 2) `Host`: Se crea con `docker run Ubuntu --network=host`. Permite que usuarios externos puedan conectarse a los contenedores (CUIDADO: ya no existirá aislamiento entre el host y el contenedor pero tampoco haría falta mapear los puertos entre los puertos del host y del contenedor, el contenedor usaría el puerto real del host)
-- 3) `None`: Se crea con `docker run Ubuntu --network=none`. De esta forma los contenedores no están unidos a ninguna red y no tienen acceso a la red externa ni a otros contenedores (red aislada)
+1) `Bridge`: Se crea con `docker run ubuntu` por defecto. Es una red privada creada por docker en el host, los contenedores se adjuntan ahí por defecto y obtienen una IP interna, los contenedores se comunican entre ellos mediante esta red
+2) `Host`: Se crea con `docker run Ubuntu --network=host`. Permite que usuarios externos puedan conectarse a los contenedores (CUIDADO: ya no existirá aislamiento entre el host y el contenedor pero tampoco haría falta mapear los puertos entre los puertos del host y del contenedor, el contenedor usaría el puerto real del host)
+3) `None`: Se crea con `docker run Ubuntu --network=none`. De esta forma los contenedores no están unidos a ninguna red y no tienen acceso a la red externa ni a otros contenedores (red aislada)
 
 
 
