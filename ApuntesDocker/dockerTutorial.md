@@ -113,12 +113,30 @@ Existen múltiples aplicaciones dockerizadas (versiones metidas en contenedores)
 
 2) Una vez hecho lo anterior, `docker build Dockerfile -t franete/custom-app`: Especificamos el 'Dockerfile' del que se crea y el tag '-t' para la imagen. Esto crea una imagen en local. Para hacerla pública en el registro docker hub --> `docker push franete/custom-app`
 
-## 14 Docker labs: https://kodekloud.com/courses/enrolled/970256
+## 14. Docker labs: https://kodekloud.com/courses/enrolled/970256
 
-## **CMD & ENTRYPOINT**
+## 15. **CMD & ENTRYPOINT**
 
-- Si miramos la imagen por ejemplo de 'Ngingx' veremos unas instrucciones `CMD` que define el programa que correrá dentro del contenedor cuando se ejecute. Si vemos `CMD ["bash"]` esto es que tira una shell que escucha inputs del terminal. 
+- Si miramos la imagen por ejemplo de 'Ngingx' veremos unas instrucciones `CMD`, esto define el programa que correrá dentro del contenedor cuando se ejecute. Si vemos `CMD ["bash"]` esto es que tira una shell que escucha inputs del terminal. 
 - Para sobrescribir el comando (cmd) que viene en la imagen podemos: `docker run ubuntu [COMMAND]` Por ejemplo `docker run ubuntu sleep 5`
+- Con la instrucción `ENTRYPOINT` indicas el programa que correrá cuando se levante el contenedor 
+
+- Con `CMD sleep 5` dentro del **Dockerfile** tendremos que levantarlo (si queremos cambiar el parámetro pasado a sleep) mediante `docker run ubuntu-sleeper sleep 10`
+- Si tenemos en el **Dockerfile** `ENTRYPOINT ["sleep"]` cuando simplemente tendremos que levantarlo haciendo `docker run ubuntu-sleeper 10`: **Aquí no hace falta indicarle 'sleep' porque va en el ENTRYPOINT**
+- Se puede combinar en el **Dockerfile** `ENTRYPOINT ["sleep"]` + `CMD ["5"]` para que si ejecutamos por defecto `docker run ubuntu-sleeper` no nos dé error (pq con entrypoint debemos indicarle un valor a sleep y con cmd debemos indicarle la instrucción). De este modo combina el ENTRYPOINT y el CMD para ejecutar `sleep 5`
+- `docker run --entrypoint sleep2.0 ubuntu-sleeper 10`: Para cambiar el entrypoint directamente.
+
+## 16. Networks. `Bridge`, `none`, `host`
+
+- Al instalar docker crea tres redes automaticamente:
+
+
+- 1) `Bridge`: Se crea con `docker run ubuntu` por defecto. Es una red privada creada por docker en el host, los contenedores se adjuntan ahí por defecto y obtienen una IP interna, los contenedores se comunican entre ellos mediante esta red
+- 2) `Host`: Se crea con `docker run Ubuntu --network=host`. Permite que usuarios externos puedan conectarse a los contenedores (CUIDADO: ya no existirá aislamiento entre el host y el contenedor pero tampoco haría falta mapear los puertos entre los puertos del host y del contenedor, el contenedor usaría el puerto real del host)
+- 3) `None`: Se crea con `docker run Ubuntu --network=none`. De esta forma los contenedores no están unidos a ninguna red y no tienen acceso a la red externa ni a otros contenedores (red aislada)
+
+
+
 
 
 
