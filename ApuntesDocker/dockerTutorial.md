@@ -138,7 +138,8 @@ Existen múltiples aplicaciones dockerizadas (versiones metidas en contenedores)
 ### 16.1. Definir redes
 
 - `docker network create ---driver bridge --subnet 182.18.0.0/16 nombre-red-aislada`: Para crear nuestra propia red interna
-- `docker network ls`: Lista de las redes docker
+- `docker network ls`: Lista de las redes docker.
+- `docker network inspect bridge`: Inspecciona esa red en concreto (ver subred, gateway...)
 
 
 
