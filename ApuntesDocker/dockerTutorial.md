@@ -166,6 +166,8 @@ Ahora procederemos a generar un `docker-compose.yml` a partir de lo anterior
 
 ![dockerCompose](https://user-images.githubusercontent.com/78214153/109789663-d7fdfd80-7c10-11eb-8ccd-704afd33e78d.PNG)
 
+- `environment:` 
+
 Posteriormente podemos realizar un `docker-compose up` para levantar toda la arquitectura anterior.
 Podemos tener varios 'docker-compose.yml' pero deben comenzar con `version: 2`... para poder diferenciarlos
 Usando `depends_on:` dentro del .yml podemos establecer un orden de inicio para que una app arranque antes que otra
