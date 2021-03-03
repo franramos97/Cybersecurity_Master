@@ -141,6 +141,37 @@ Existen múltiples aplicaciones dockerizadas (versiones metidas en contenedores)
 - `docker network ls`: Lista de las redes docker.
 - `docker network inspect bridge`: Inspecciona esa red en concreto (ver subred, gateway...)
 
+## 17. Almacenamiento en Docker. File system
+
+Al instalar docker en un sistema crea la estructura `/var/lib/docker` y bajo ese tenemos `aufs`, `containers`, `image`, `volumes`. Cada fichero contiene info sobre su nombre (containers: sobre contenedores...).
+
+![container system](https://user-images.githubusercontent.com/78214153/109785081-0af1c280-7c0c-11eb-996b-17e24a545ca3.PNG)
+
+### 17.1 Volume mounting
+
+- Para crear un volumen persistente: `docker volume create data_volume` esto crea "/var/lib/docker/volumes/data_volume" y lanzo `docker run -v data_volume:/var/lib/mysql mysql` si por ejemplo 'data_volume' no lo hemos creado con el 1º comando de antes, docker lo genera automáticamente con el 2º comando que tenemos (run -v)
+
+## 18. Docker `compose`
+
+Escenario donde queremos lanzar 'voting-app', 'result-app', 'in-memory DB', 'db' y 'worker'. Debemos **enlazarlos entre sí** para que se puedan alcanzar entre ellos, para eso usamos el comando `link` que enlaza dos contenedores. Para utilizar link IMPORTANTE DARLES UN NOMBRE A LOS CONTENEDORES
+
+- `docker run -d --name=redis redis`: Lanzamos el 'in-memory DB' que es una instancia de redis, '-d' para correrlo en background
+- `docker run -d --name=db postgres:9.4 --link db:db result-app`: Lanzamos el 'db', instancia de postgres y lo enlazamos al db_db
+- `docker run -d --name=vote -p 5000:80 --link redis:redis voting-app`: Esto es un servidor web y lo tenemos corriendo en el puerto 80 (5000 en nuestro host). Con `--link` le indicamos que enlace con la imagen redis:redis
+- `docker run -d --name=result -p 5001:80`: Para ver los resultados en el servidor web en el puerto 5001
+- `docker run -d --name=worker --link redis:redis --link db:db worker`: En programa .net para procesar los datos
+
+Ahora procederemos a generar un `docker-compose.yml` a partir de lo anterior 
+
+![dockerCompose](https://user-images.githubusercontent.com/78214153/109789663-d7fdfd80-7c10-11eb-8ccd-704afd33e78d.PNG)
+
+Posteriormente podemos realizar un `docker-compose up` para levantar toda la arquitectura anterior.
+Podemos tener varios 'docker-compose.yml' pero deben comenzar con `version: 2`... para poder diferenciarlos
+Usando `depends_on:` dentro del .yml podemos establecer un orden de inicio para que una app arranque antes que otra
+
+
+
+
 
 
 
