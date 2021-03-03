@@ -86,6 +86,7 @@ Existen múltiples aplicaciones dockerizadas (versiones metidas en contenedores)
 ## 9. Comando `images`: Ver **IMÁGENES**
 
 - `docker images`: Nos muestra una lista de imágenes presentes en nuestro ordenador (y el tamaño)
+- La nomenclatura de las imágenes es `image: docker.io/nginx/nginx` donde el primer apartado es el 'Regystry' que por defecto es dockerHub, el 2º es el "UserAccount" que es la cuenta del docker hub y el 3º es el "ImageRepository"
 
 ## 10. Comando `rmi`: Borrar **IMÁGENES** (Comprobar si algún contenedor está corriendo desde esa imagen)
 
