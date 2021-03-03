@@ -75,13 +75,15 @@ Existen múltiples aplicaciones dockerizadas (versiones metidas en contenedores)
 - En un código python podemos poner por ejemplo una línea con `color = os.environ.get('APP_COLOR')`. Después podemos ejecutar `docker run -e APP_COLOR=blue simple-webapp-color` y estaremos ya pasándole el valor 'blue' directamente a la instancia que creamos.
 - Cuando hacemos `docker inspect "nombre_o_ID"` en el apartado `"Env": [` veremos una lista de sus variables de entorno
 
-## 7. Comando `stop`
+## 7. Comando `stop` y `start`
 
 - `docker stop "nombre_o_ID"`: Paramos el contenedor, debemos pasarle o el nombre o el ID (verlo con `docker ps`)
+- `docker start "nombre_o_ID"`: Para volver a arrancar el contenedor
 
 ## 8. Comando `rm`
 
 - `docker rm "nombre_o_ID"`: Para quitarlo permanentemente. Ya no aparecerá al hacer `docker ps -a`
+- `docker rm -f $(docker ps -aq)`: Esto los borra todos
 
 ## 9. Comando `images`: Ver **IMÁGENES**
 
